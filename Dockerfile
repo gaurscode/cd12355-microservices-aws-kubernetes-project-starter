@@ -1,5 +1,5 @@
 # Use 
-FROM python:alpine3.19
+FROM public.ecr.aws/docker/library/python:alpine3.19
 
 
 # Set the working directory inside the container
