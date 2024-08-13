@@ -62,28 +62,9 @@ export POSTGRES_PASSWORD=$(kubectl get secret --namespace default coworking-db-p
 echo $POSTGRES_PASSWORD
 ```
 
-### Load Data
-
-The next step is to create a database and a user for the application.
-
-```bash
-kubectl -n default cp ./1_create_tables.sql coworking-db-postgresql-0:/tmp
-kubectl -n default cp ./2_seed_users.sql coworking-db-postgresql-0:/tmp
-kubectl -n default cp ./3_seed_tokens.sql coworking-db-postgresql-0:/tmp
-```
-
-and then run the scripts to load the data:
-
-```bash
-# execute the scripts
-kubectl -n default exec -it coworking-db-postgresql-0 -- PGPASSWORD="$POSTGRES_PASSWORD" psql -U postgres -d postgres -f /tmp/1_create_tables.sql
-kubectl -n default exec -it coworking-db-postgresql-0 -- PGPASSWORD="$POSTGRES_PASSWORD" psql -U postgres -d postgres -f /tmp/2_seed_users.sql
-kubectl -n default exec -it coworking-db-postgresql-0 -- PGPASSWORD="$POSTGRES_PASSWORD" psql -U postgres -d postgres -f /tmp/3_seed_tokens.sql
-```
-
 ## Build Pipeline
 
-The build pipeline is set up using AWS CodeBuild. The pipeline is triggered when a new commit is pushed to the `main` branch. The pipeline builds the Docker image, tags it, and pushes it to ECR.
+The build pipeline is set up using AWS CodeBuild. **The pipeline is triggered when a Pull Request is merged to the main branch.** The pipeline builds the Docker image, tags it, and pushes it to ECR.
 
 Here is a build spec for the pipeline:
 
@@ -135,4 +116,101 @@ ENV DB_NAME=postgres
 
 # Run the application when the container starts
 CMD python /app/app.py
-````
+```
+
+Once the code is committed to the repository, the pipeline is triggered and the Docker image is built and pushed to ECR.
+
+![CodeBuild Pipeline](./images/build-pipeline.png)
+
+We can see the image in the ECR repository:
+
+![ECR Repository](./images/ecr-image.png)
+
+## Deploy to Kubernetes
+
+We will start with setting up the required configurations and secrets in Kubernetes: `kubectl apply -f configmap.yaml`. The configmap contains the environment variables required by the application.
+
+The same can be verified as:
+
+![ConfigMap](./images/config-and-secrets.png)
+
+Post this, we will deploy the application using the following command: `kubectl apply -f coworking.yaml`. The deployment creates a pod with the application and a service to expose the application.
+
+Once done, we can verify the deployment and service using the following commands:
+
+```bash
+kubectl get deploy
+kubectl get pods
+kubectl get svc
+```
+
+`Services and Deployment`
+
+![Deployment and Service](./images/svc-and-deploy.png)
+
+`Describe Deployment`
+
+![deployment](./images/describe-deploy.png)
+
+`Application Pod`
+
+![Pod Details](./images/app-pod.png)
+
+`DB Pod`
+
+![Pod DB](./images/db-pod.png)
+
+`App Service`
+
+![App SVC](./images/app-svc.png)
+
+`DB Service`
+
+![DB SVC](./images/db-svc.png)
+
+## AWS CloudWatch Logs
+
+### Application Logs
+
+Update IAM policy:
+
+```sh
+aws iam attach-role-policy \
+--role-name arn:aws:iam::640393665749:role/eks-node-group-role \
+--policy-arn arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy
+```
+
+Install CloudWatch Agent:
+
+```sh
+aws eks create-addon --addon-name amazon-cloudwatch-observability --cluster-name gaurs-cd12355-cluster
+```
+
+Once the agent is installed, we can see the logs in CloudWatch:
+
+![Cloudwatch Logs](./images/cloud-app-logs-1.png)
+
+![Cloudwatch Logs](./images/cloud-app-logs-2.png)
+
+### Cluster Logs
+
+![Cloudwatch Cluster](./images/cloudwatch-1.png)
+
+![Cloudwatch Cluster](./images/cloudwatch-2.png)
+
+![Cloudwatch Cluster](./images/cloudwatch-3.png)
+
+## Deliverables
+
+1. Dockerfile - done
+2. Screenshot of AWS CodeBuild pipeline - done
+3. Screenshot of AWS ECR repository for the application's repository - done
+4. Screenshot of kubectl get svc - done
+5. Screenshot of kubectl get pods - done
+6. Screenshot of kubectl describe svc <DATABASE_SERVICE_NAME> - done
+7. Screenshot of kubectl describe deployment <SERVICE_NAME> - done
+8. All Kubernetes config files used for deployment (ie YAML files) - done
+9. Screenshot of AWS CloudWatch logs for the application - done
+10. README.md - done
+
+Please check the [images](./images/) for the screenshots.

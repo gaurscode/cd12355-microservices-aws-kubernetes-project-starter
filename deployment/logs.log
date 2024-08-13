@@ -1,0 +1,1257 @@
+/usr/local/lib/python3.12/site-packages/tzlocal/unix.py:193: UserWarning: Can not find any timezone configuration, defaulting to UTC.
+  warnings.warn("Can not find any timezone configuration, defaulting to UTC.")
+ * Serving Flask app 'config'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5153
+ * Running on http://172.31.71.158:5153
+[33mPress CTRL+C to quit[0m
+172.31.78.133 - - [13/Aug/2024 12:44:53] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:44:53,711] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:44:53] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:45:03] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:45:03,687] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:45:03] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:45:13] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:45:13,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:45:13] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:45:45 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:45:23] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:45:23,685] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:45:23] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:45:33] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:45:33,685] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:45:33] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:45:43] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:45:43,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:45:43] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:46:15 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:45:53] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:45:53,696] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:45:53] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+[2024-08-13 12:46:03,337] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:46:03] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:46:03] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:46:03,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:46:03] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:46:13] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:46:13,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:46:13] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:46:45 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:46:23] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:46:23,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:46:23] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:46:33] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:46:33,685] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:46:33] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:46:43] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:46:43,683] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:46:43] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:47:15 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:46:53] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:46:53,685] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:46:53] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:47:03] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:47:03,690] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:47:03] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+[2024-08-13 12:47:04,339] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:47:04] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:47:13] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:47:13,683] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:47:13] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:47:45 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:47:23] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:47:23,685] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:47:23] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:47:33] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:47:33,683] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:47:33] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:47:43] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:47:43,687] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:47:43] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:48:15 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:47:53] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:47:53,683] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:47:53] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:48:03] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:48:03,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:48:03] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+[2024-08-13 12:48:11,338] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:48:11] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:48:13] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:48:13,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:48:13] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:48:45 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:48:23] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:48:23,682] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:48:23] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:48:33] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:48:33,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:48:33] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:48:43] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:48:43,685] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:48:43] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:49:15 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:48:53] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:48:53,683] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:48:53] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:49:03] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:49:03,683] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:49:03] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:49:13] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:49:13,687] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:49:13] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:49:45 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2024-08-13 12:49:18,337] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:49:18] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:49:23] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:49:23,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:49:23] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:49:33] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:49:33,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:49:33] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:49:43] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:49:43,692] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:49:43] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:50:15 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:49:53] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:49:53,686] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:49:53] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:50:03] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:50:03,685] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:50:03] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:50:13] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:50:13,683] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:50:13] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:50:45 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:50:23] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:50:23,686] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:50:23] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+[2024-08-13 12:50:28,336] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:50:28] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:50:33] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:50:33,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:50:33] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:50:43] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:50:43,683] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:50:43] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:51:15 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:50:53] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:50:53,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:50:53] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:51:03] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:51:03,686] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:51:03] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:51:13] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:51:13,682] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:51:13] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:51:45 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:51:23] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:51:23,683] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:51:23] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:51:33] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:51:33,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:51:33] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+[2024-08-13 12:51:34,338] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:51:34] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:51:43] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:51:43,683] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:51:43] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+Job "get_daily_visits (trigger: interval[0:00:30], next run at: 2024-08-13 12:52:15 UTC)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app.py", line 34, in get_daily_visits
+    result = db.session.execute(text("""
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 778, in execute
+    return self._proxied.execute(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2306, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2200, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1408, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 513, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1630, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1839, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1979, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2335, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1960, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 4:         FROM   tokens
+                       ^
+
+[SQL: 
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:51:53] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:51:53,683] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:51:53] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
+172.31.78.133 - - [13/Aug/2024 12:52:03] "GET /health_check HTTP/1.1" 200 -
+[2024-08-13 12:52:03,684] ERROR in app: (psycopg2.errors.UndefinedTable) relation "tokens" does not exist
+LINE 1: SELECT COUNT(*) FROM tokens
+                             ^
+
+[SQL: SELECT COUNT(*) FROM tokens]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+172.31.78.133 - - [13/Aug/2024 12:52:03] "[35m[1mGET /readiness_check HTTP/1.1[0m" 500 -
